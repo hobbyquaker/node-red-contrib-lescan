@@ -1,0 +1,61 @@
+{
+  "name": "node-red-contrib-lescan",
+  "version": "1.0.0-beta.1",
+  "description": "use hcitool lescan to find bluetooth devices in range",
+  "main": "lescan.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hobbyquaker/node-red-contrib-lescan.git"
+  },
+  "keywords": [
+    "node-red",
+    "bluetooth",
+    "presence",
+    "ble",
+    "hcitool",
+    "lescan"
+  ],
+  "author": "Sebastian Raff <hobbyquaker@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/hobbyquaker/node-red-contrib-lescan/issues"
+  },
+  "homepage": "https://github.com/hobbyquaker/node-red-contrib-lescan#readme",
+  "node-red": {
+    "nodes": {
+      "lescan": "nodes/lescan.js"
+    }
+  },
+  "devDependencies": {
+    "eslint-plugin-html": "^5.0.3",
+    "xo": "^0.24.0"
+  },
+  "scripts": {
+    "test": "xo",
+    "lintfix": "xo --fix"
+  },
+  "xo": {
+    "space": 4,
+    "plugin": "html",
+    "global": [
+      "$",
+      "RED"
+    ],
+    "extensions": [
+      "js",
+      "html"
+    ],
+    "rules": {
+      "no-template-curly-in-string": "warn",
+      "camelcase": "warn",
+      "capitalized-comments": 0,
+      "spaced-comment": 0,
+      "unicorn/catch-error-name": 0,
+      "valid-jsdoc": 0,
+      "eslint-comments/no-unused-disable": 0,
+      "promise/prefer-await-to-then": 0,
+      "prefer-object-spread": 0
+    },
+    "ignore": []
+  }
+}

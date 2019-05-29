@@ -1,0 +1,72 @@
+<script type="text/javascript">
+    RED.nodes.registerType('lescan', {
+        category: 'bluetooth',
+        defaults: {
+            name: {value: ''},
+            cmd: {value: '/usr/bin/hcitool', required: true},
+            device: {value: 'hci0', required: true},
+            passive: {value: true},
+            continuous: {value: true},
+            interval: {value: 30},
+            scantime: {value: 5},
+            timeout: {value: 30}
+        },
+        color: '#A6BBCF',
+        inputs: 1,
+        outputs: 1,
+        icon: 'bt.png',
+        align: 'left',
+        paletteLabel: 'lescan',
+        label() {
+            return this.name || 'lescan';
+        },
+        oneditprepare() {
+            $('#node-input-continuous').change(function () {
+                if ($(this).is(':checked')) {
+                    $('.interval-row').hide();
+                } else {
+                    $('.interval-row').show();
+                }
+            });
+            $('#node-input-continuous').trigger('change');
+        },
+        oneditsave() {
+
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="lescan">
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+    <div class="form-row">
+        <label for="node-input-cmd"><i class="fa fa-tag"></i> cmd</label>
+        <input type="text" id="node-input-cmd" placeholder="cmd">
+    </div>
+    <div class="form-row">
+        <label for="node-input-device"><i class="fa fa-tag"></i> device</label>
+        <input type="text" id="node-input-device" placeholder="device">
+    </div>
+    <div class="form-row">
+        <label for="node-input-passive"><i class="fa fa-tag"></i> passive</label>
+        <input type="checkbox" id="node-input-passive">
+    </div>
+    <div class="form-row">
+        <label for="node-input-continuous"><i class="fa fa-tag"></i> continuous</label>
+        <input type="checkbox" id="node-input-continuous">
+    </div>
+    <div class="form-row interval-row">
+        <label for="node-input-interval"><i class="fa fa-tag"></i> interval</label>
+        <input type="number" id="node-input-interval" placeholder="interval">
+    </div>
+    <div class="form-row interval-row">
+        <label for="node-input-scantime"><i class="fa fa-tag"></i> scantime</label>
+        <input type="number" id="node-input-scantime" placeholder="scantime">
+    </div>
+    <div class="form-row">
+        <label for="node-input-timeout"><i class="fa fa-tag"></i> timeout</label>
+        <input type="number" id="node-input-timeout" placeholder="timeout">
+    </div>
+</script>
