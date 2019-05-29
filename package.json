@@ -31,8 +31,15 @@
     "xo": "^0.24.0"
   },
   "scripts": {
+    "checkgit": "([[ $(git rev-parse --abbrev-ref HEAD) == \"master\" ]] && git diff --exit-code && git diff --cached --exit-code && git diff --exit-code origin/master..master)",
+    "prepublishOnly": "npm run checkgit --silent",
+    "postpublish": "git tag v$(jq -r '.version' package.json) && git push --no-verify --tags",
+    "testfull": "camo-purge; xo && nyc mocha \"test/**/*_spec.js\" --exit && nyc report --reporter=text-lcov | coveralls --force",
     "test": "xo",
-    "lintfix": "xo --fix"
+    "lintonly": "xo",
+    "lintfix": "xo --fix",
+    "testonly": "mocha \"test/**/*_spec.js\" --exit",
+    "testcov": "nyc mocha \"test/**/*_spec.js\" --exit"
   },
   "xo": {
     "space": 4,
